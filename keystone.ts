@@ -31,6 +31,7 @@ export default withAuth(
   config({
     server: {
       cors: {
+        // @ts-ignore
         origin: [process.env.FRONTEND_URL],
         credentials: true,
       },
@@ -48,6 +49,7 @@ export default withAuth(
     ui: {
       isAccessAllowed: ({ session }) => !!session?.data,
     },
+    // @ts-ignore
     session: withItemData(statelessSessions(sessionConfig), {
       User: `id`,
     }),
