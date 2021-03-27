@@ -3,11 +3,9 @@ import { timestamp, integer, text, relationship } from '@keystone-next/fields';
 
 export const Quiz = list({
   fields: {
-    subject: text({ isRequired: true }),
-    week: timestamp({
-      isRequired: true,
-    }),
-    votes: integer(),
+    subject: text({ isRequired: true, isUnique: true }),
+    week: timestamp(),
+    votes: integer({ defaultValue: 1 }),
     question: relationship({ ref: 'Question.quiz', many: true }),
   },
   ui: {
