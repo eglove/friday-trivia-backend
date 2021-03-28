@@ -6,6 +6,7 @@ export const Option = list({
     content: text({ isRequired: true }),
     votes: integer(),
     question: relationship({ ref: 'Question.option', many: true }),
+    usersVoted: relationship({ ref: 'User.votedOnOptions', many: true }),
   },
   ui: {
     listView: {

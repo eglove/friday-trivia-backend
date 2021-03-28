@@ -1,5 +1,5 @@
 import { list } from '@keystone-next/keystone/schema';
-import { text, integer, password } from '@keystone-next/fields';
+import { text, integer, password, relationship } from '@keystone-next/fields';
 
 export const User = list({
   fields: {
@@ -8,10 +8,13 @@ export const User = list({
     password: password({ isRequired: true }),
     totalScore: integer(),
     currentWeekScore: integer(),
+    votedOnQuizzes: relationship({ ref: 'Quiz.usersVoted', many: true }),
+    votedOnQuestions: relationship({ ref: 'Question.usersVoted', many: true }),
+    votedOnOptions: relationship({ ref: 'Option.usersVoted', many: true }),
   },
   ui: {
     listView: {
-      initialColumns: ['name', 'currentWeekScore', 'totalScore']
-    }
-  }
+      initialColumns: ['name', 'currentWeekScore', 'totalScore'],
+    },
+  },
 });

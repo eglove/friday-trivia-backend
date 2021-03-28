@@ -4,9 +4,10 @@ import { integer, relationship, text } from '@keystone-next/fields';
 export const Question = list({
   fields: {
     content: text({ isRequired: true }),
-    votes: integer(),
+    votes: integer({ defaultValue: 1 }),
     option: relationship({ ref: 'Option.question', many: true }),
     quiz: relationship({ ref: 'Quiz.question', many: true }),
+    usersVoted: relationship({ ref: 'User.votedOnQuestions', many: true }),
   },
   ui: {
     listView: {

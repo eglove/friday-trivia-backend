@@ -7,6 +7,7 @@ export const Quiz = list({
     week: timestamp(),
     votes: integer({ defaultValue: 1 }),
     question: relationship({ ref: 'Question.quiz', many: true }),
+    usersVoted: relationship({ ref: 'User.votedOnQuizzes', many: true }),
   },
   ui: {
     listView: {
