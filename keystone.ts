@@ -9,6 +9,7 @@ import { User } from './schemas/User';
 import { Option } from './schemas/Option';
 import { Question } from './schemas/Question';
 import { Quiz } from './schemas/Quiz';
+import { sendPasswordResetEmail } from './lib/mail';
 
 const databaseUrl =
   process.env.DATABASE_URL || 'mongodb://localhost/friday-trivia';
@@ -24,6 +25,11 @@ const { withAuth } = createAuth({
   secretField: 'password',
   initFirstItem: {
     fields: ['name', 'email', 'password'],
+  },
+  passwordResetLink: {
+    async sendToken(args) {
+      await sendPasswordResetEmail(args.token, args.identity);
+    },
   },
 });
 
