@@ -10,6 +10,7 @@ import { Option } from './schemas/Option';
 import { Question } from './schemas/Question';
 import { Quiz } from './schemas/Quiz';
 import { sendPasswordResetEmail } from './lib/mail';
+import { TriviaState } from './schemas/TriviaState';
 
 const databaseUrl =
   process.env.DATABASE_URL || 'mongodb://localhost/friday-trivia';
@@ -47,6 +48,7 @@ export default withAuth(
       url: databaseUrl,
     },
     lists: createSchema({
+      TriviaState,
       User,
       Quiz,
       Question,
