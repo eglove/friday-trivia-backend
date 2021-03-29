@@ -11,10 +11,11 @@ export const User = list({
     votedOnQuizzes: relationship({ ref: 'Quiz.usersVoted', many: true }),
     votedOnQuestions: relationship({ ref: 'Question.usersVoted', many: true }),
     votedOnOptions: relationship({ ref: 'Option.usersVoted', many: true }),
+    role: relationship({ ref: 'Role.assignedTo' }),
   },
   ui: {
     listView: {
-      initialColumns: ['name', 'currentWeekScore', 'totalScore'],
+      initialColumns: ['name', 'role', 'currentWeekScore', 'totalScore'],
     },
   },
 });
