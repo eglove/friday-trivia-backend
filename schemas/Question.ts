@@ -12,6 +12,7 @@ export const Question = list({
   fields: {
     content: text({ isRequired: true }),
     votes: integer({ defaultValue: 1 }),
+    numberOfOptions: integer({ defaultValue: 0 }),
     option: relationship({ ref: 'Option.question', many: true }),
     quiz: relationship({ ref: 'Quiz.question', many: true }),
     usersVoted: relationship({ ref: 'User.votedOnQuestions', many: true }),
@@ -25,7 +26,7 @@ export const Question = list({
   },
   ui: {
     listView: {
-      initialColumns: ['votes', 'content'],
+      initialColumns: ['votes', 'content', 'numberOfOptions'],
     },
     hideDelete: args => !rules.canManageQuizzes(args),
   },
