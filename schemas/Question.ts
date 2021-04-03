@@ -14,7 +14,7 @@ export const Question = list({
     votes: integer({ defaultValue: 1 }),
     numberOfOptions: integer({ defaultValue: 0 }),
     option: relationship({ ref: 'Option.question', many: true }),
-    quiz: relationship({ ref: 'Quiz.question', many: true }),
+    quiz: relationship({ ref: 'Quiz.question' }),
     usersVoted: relationship({ ref: 'User.votedOnQuestions', many: true }),
     userCreated: relationship({
       ref: 'User.questions',

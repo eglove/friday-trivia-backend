@@ -1,5 +1,5 @@
 import { list } from '@keystone-next/keystone/schema';
-import { integer, relationship, text } from '@keystone-next/fields';
+import { checkbox, integer, relationship, text } from '@keystone-next/fields';
 import { isSignedIn, rules } from '../access';
 
 export const Option = list({
@@ -12,7 +12,8 @@ export const Option = list({
   fields: {
     content: text({ isRequired: true }),
     votes: integer({ defaultValue: 1 }),
-    question: relationship({ ref: 'Question.option', many: true }),
+    isCorrect: checkbox({ isRequired: true, defaultValue: false }),
+    question: relationship({ ref: 'Question.option' }),
     usersVoted: relationship({ ref: 'User.votedOnOptions', many: true }),
     userCreated: relationship({
       ref: 'User.options',
@@ -24,7 +25,7 @@ export const Option = list({
   },
   ui: {
     listView: {
-      initialColumns: ['votes', 'content'],
+      initialColumns: ['votes', 'content', 'question', 'isCorrect'],
     },
     hideDelete: args => !rules.canManageQuizzes(args),
   },
