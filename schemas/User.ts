@@ -18,6 +18,10 @@ export const User = list({
     votedOnQuizzes: relationship({ ref: 'Quiz.usersVoted', many: true }),
     votedOnQuestions: relationship({ ref: 'Question.usersVoted', many: true }),
     votedOnOptions: relationship({ ref: 'Option.usersVoted', many: true }),
+    answeredQuestions: relationship({
+      ref: 'Question.usersAnswered',
+      many: true,
+    }),
     role: relationship({
       ref: 'Role.assignedTo',
       access: {

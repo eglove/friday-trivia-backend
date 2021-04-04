@@ -16,6 +16,7 @@ export const Question = list({
     option: relationship({ ref: 'Option.question', many: true }),
     quiz: relationship({ ref: 'Quiz.question' }),
     usersVoted: relationship({ ref: 'User.votedOnQuestions', many: true }),
+    usersAnswered: relationship({ ref: 'User.answeredQuestions', many: true }),
     userCreated: relationship({
       ref: 'User.questions',
       // Default user id when question is created
